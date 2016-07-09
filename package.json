@@ -1,0 +1,38 @@
+{
+  "name": "npm-build-tool",
+  "version": "1.0.0",
+  "description": "NPM Front End Development Build Tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm install && npm run -s -q dev",
+    "dev": "mkdir -p dist && npm run -s -q build",
+    "build": "npm-run-all -s build:* && npm run watch",
+    "build:styles": "node-sass --source-map true -q -o dist/css/ source/styles/app.scss && npm run build:styles:postcss",
+    "build:styles:postcss": "postcss -c postcssOptions.json -r dist/css/*.css",
+    "build:html": "pug source/templates/*.pug -o dist -P -s",
+    "build:images": "imagemin source/images/* dist/img -p",
+    "watch": "parallelshell 'npm run watch:html' 'npm run watch:styles' 'npm run watch:images'",
+    "watch:html": "onchange 'source/templates/**/*.pug' -- npm run -s -q build:html",
+    "watch:styles": "onchange 'source/styles/**/*.scss' -- npm run -s -q build:styles",
+    "watch:images": "onchange 'source/images/**.*' -- npm run -s -q build:images"
+  },
+  "author": "Pepe Miyashiro",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "css-mqpacker": "^5.0.1",
+    "cssnano": "^3.7.1",
+    "imagemin-cli": "^2.1.0",
+    "node-sass": "^3.8.0",
+    "npm-run-all": "^2.3.0",
+    "onchange": "^2.5.0",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.5.2",
+    "postcss-flexboxfixer": "0.0.5",
+    "postcss-flexbugs-fixes": "^2.0.0",
+    "postcss-unprefix": "^0.2.2",
+    "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^2.5.3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "use" : [
+    "postcss-unprefix",
+    "postcss-flexboxfixer",
+    "autoprefixer",
+    "css-mqpacker",
+    "postcss-flexbugs-fixes",
+    "cssnano"
+  ],
+  "autoprefixer": {
+    "browsers": ["last 3 version", "ie >= 10"]
+  },
+  "mqpacker": {"sort":true}
+}

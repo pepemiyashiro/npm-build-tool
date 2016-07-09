@@ -1,0 +1,10 @@
+@import '1.libraries/libraries';
+
+.wrapper {
+  background: gray;
+  display: flex;
+}
+
+.flex-item {
+  flex: 1 0 auto;
+}
