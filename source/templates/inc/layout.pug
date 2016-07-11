@@ -1,6 +1,6 @@
-include -config
+include -config.pug
 doctype html
-html.no-js(lang='#{page.lang}')
+html.no-js(lang=`${page.lang}`)
   include -head.pug
   body
     <!--[if lt IE 8]>
